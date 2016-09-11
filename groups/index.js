@@ -9,7 +9,7 @@ var Message = require('../models/message.js');
 router.get('/room', function(req,res,next) {
 	Room.findAll({})
 	.then(function(rooms) {
-		res.send(rooms)
+		res.json(rooms)
 	})
 })
 
@@ -64,24 +64,7 @@ router.post('/message/:name',function(req,res,next) {
 	})
 })
 
-// router.post("/:id", function(req,res,next) {
 
-// 		return Message.create({
-// 			content:req.body.content
-// 		})
-// 	.then(function(message) {
-// 			Room.findOne({
-// 				where : {
-// 					id : req.params.id
-// 				}
-// 			}).then(function(room) {
-// 				.setMessages(message)
-// 				res.send(room.data.messages)
-// 				console.log("woot")
-// 			})
-// 	})
-
-// })
 
 
 module.exports = router
