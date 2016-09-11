@@ -5,6 +5,15 @@ var Sequelize = require('sequelize');
 var Room = require('../models/room.js');
 var Message = require('../models/message.js');
 
+
+router.get('/room', function(req,res,next) {
+	Room.findAll({})
+	.then(function(rooms) {
+		res.send(rooms)
+	})
+})
+
+
 router.get("/:id", function(req,res,next) {
 	Room.findOne({
 		where : {
@@ -25,12 +34,13 @@ router.get("/:id", function(req,res,next) {
 		})
 })
 
+
 router.post("/room", function(req,res,next) {
 	Room.create({
 		name: req.body.name
 	})
 	.then(function(room) {
-		res.send(room.data)
+		res.send(room)
 	})
 })
 router.post('/message/:name',function(req,res,next) {
